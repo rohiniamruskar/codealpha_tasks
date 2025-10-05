@@ -1,6 +1,7 @@
  TASK 4: Web Server using Docker 
  
  Container Lifecycle -
+ 
  docker run <image> → Create + Start a container
  docker ps -a → List all containers
  docker stop <id> / docker kill <id> → Stop container (graceful vs force)
