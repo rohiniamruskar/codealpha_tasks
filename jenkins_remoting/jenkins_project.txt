@@ -1,0 +1,109 @@
+Started by user Rohini Amruskar
+[Pipeline] Start of Pipeline
+[Pipeline] stage
+[Pipeline] { (Parallel Build on Linux Nodes)
+[Pipeline] parallel
+[Pipeline] { (Branch: Build on Linux-x86)
+[Pipeline] { (Branch: Build on Linux-ARM)
+[Pipeline] stage
+[Pipeline] { (Build on Linux-x86)
+[Pipeline] stage
+[Pipeline] { (Build on Linux-ARM)
+[Pipeline] node
+Running on linux-x86 in /home/jenkins/agent/workspace/node_isolation
+[Pipeline] node
+Running on linux-arm in /home/jenkins/agent/workspace/node_isolation
+[Pipeline] {
+[Pipeline] {
+[Pipeline] echo
+🏗️ Building project on Linux-x86 node...
+[Pipeline] sh
+[Pipeline] echo
+🏗️ Building project on Linux-ARM node...
+[Pipeline] sh
++ echo Architecture: x86_64
+Architecture: x86_64
++ echo Running build tasks...
+Running build tasks...
++ mkdir -p build_x86
++ echo Build completed on Linux-x86
+[Pipeline] stash
++ echo Architecture: ARM64
+Architecture: ARM64
++ echo Running build tasks...
+Running build tasks...
++ mkdir -p build_arm
++ echo Build completed on Linux-ARM
+Stashed 1 file(s)
+[Pipeline] }
+[Pipeline] stash
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+Stashed 1 file(s)
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // parallel
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Combine Results)
+[Pipeline] node
+Running on linux-x86 in /home/jenkins/agent/workspace/node_isolation
+[Pipeline] {
+[Pipeline] echo
+📦 Collecting build results from both nodes...
+[Pipeline] unstash
+[Pipeline] unstash
+[Pipeline] sh
++ mkdir -p combined_results
++ echo --- x86 Build ---
++ cat build_x86/result.txt
++ echo --- ARM Build ---
++ cat build_arm/result.txt
++ echo ✅ Combined build summary created!
+✅ Combined build summary created!
++ cat combined_results/final_summary.txt
+--- x86 Build ---
+Build completed on Linux-x86
+--- ARM Build ---
+Build completed on Linux-ARM
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Archive Results)
+[Pipeline] node
+Running on linux-x86 in /home/jenkins/agent/workspace/node_isolation
+[Pipeline] {
+[Pipeline] echo
+📦 Archiving final summary...
+[Pipeline] archiveArtifacts
+Archiving artifacts
+Recording fingerprints
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Declarative: Post Actions)
+[Pipeline] node
+Running on linux-x86 in /home/jenkins/agent/workspace/node_isolation
+[Pipeline] {
+[Pipeline] echo
+🧹 Cleaning up workspace...
+[Pipeline] cleanWs
+[WS-CLEANUP] Deleting project workspace...
+[WS-CLEANUP] Deferred wipeout is used...
+[WS-CLEANUP] done
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] End of Pipeline
+Finished: SUCCESS
