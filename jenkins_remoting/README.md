@@ -1,4 +1,4 @@
-#﻿ TASK 2: Jenkins Remoting Project
+# TASK 2: Jenkins Remoting Project
 # Components:
 1. Jenkins Controller – The main Jenkins server managing builds and pipelines.
 2. Docker Agents – Remote worker nodes connected via Jenkins Remoting protocol.
@@ -16,6 +16,7 @@
 2. How to distribute builds across multiple environments.
 3. How to use Jenkins Remoting effectively.
 4. How to secure Jenkins communication using container isolation.
+
 
 
 
